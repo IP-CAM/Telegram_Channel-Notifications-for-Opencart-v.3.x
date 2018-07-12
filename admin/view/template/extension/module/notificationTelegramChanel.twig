@@ -1,0 +1,147 @@
+{{ header }}
+{{ column_left }}
+
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="pull-right">
+                <button type="submit" form="form-helloworld" data-toggle="tooltip" title="{{ button_save }}"
+                        class="btn btn-primary"><i class="fa fa-save"></i></button>
+                <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+
+            <h1>{{ heading_title }}</h1>
+
+        </div>
+    </div>
+    <div class="container-fluid">
+
+
+        {% if error_warning %}
+
+
+            <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+
+        {% endif %}
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+            </div>
+            <div class="panel-body">
+
+                <div id="status"></div>
+
+
+                <div class="input-group col-lg-5">
+                    <button type="button" form="form-push" id="test" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="Test notfction Telegram Chanel"><i class="fa fa-plus"></i></button>
+                </div>
+
+
+
+                <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-helloworld"
+                      class="form-horizontal">
+                    <div class="form-group">
+
+
+                        <br/>
+                        <div class="input-group col-lg-5">
+                            <span class="input-group-addon" id="basic-addon1">APP ID</span>
+                            <input type="text" name="notificationTelegramChanel_app_id" id="notificationTelegramChanel_app_id"
+                                   value="{{ notificationTelegramChanel_app_id }}" placeholder="APP ID"
+                                   class="form-control"/>
+                            <span class="input-group-btn"><button class="btn btn-info " type="button"><i
+                                            class="fa fa-bookmark"></i></button> </span>
+                        </div>
+
+                        <br>
+
+                        <div class="input-group col-lg-5">
+                            <span class="input-group-addon" id="basic-addon1">Chanel ID @</span>
+                            <input type="text" name="notificationTelegramChanel_api_key" id="notificationTelegramChanel_api_key"
+                                   value="{{ notificationTelegramChanel_api_key }}" placeholder="Chanel ID"
+                                   class="form-control"/>
+                            <span class="input-group-btn"><button class="btn btn-info " type="button"><i
+                                            class="fa fa-bookmark"></i></button> </span>
+                        </div>
+
+                        <br>
+
+                        <div class="input-group col-lg-5">
+
+                            <select name="notificationTelegramChanel_status" id="notificationTelegramChanel_status"
+                                    class="form-control">
+                                {% if notificationTelegramChanel_status %}
+                                    <option value="1" selected>{{ text_enabled }}</option>
+                                    <option value="0">{{ text_disabled }}</option>
+                                {% else %}
+                                    <option value="1">{{ text_enabled }}</option>
+                                    <option value="0" selected>{{ text_disabled }}</option>
+                                {% endif %}
+                            </select>
+                        </div>
+
+                        <br>
+
+                        <div class="col-sm-10">
+                            {% if error_code %}
+                                <div class="text-danger">{{ error_code }}</div>
+                            {% endif %}
+                        </div>
+
+
+                    </div>
+
+                </form>
+            </div>
+
+
+            <script type="text/javascript">
+
+
+                $(document).ready(function(){
+
+
+
+
+                    $('#test').click(function(e){
+
+
+                        var notificationTelegramChanel_api_key = $("#notificationTelegramChanel_api_key").val();
+                        var notificationTelegramChanel_app_id = $("#notificationTelegramChanel_app_id").val();
+
+
+
+                        $('.input-group-addon').button('loading');
+
+                            var obj = $("#notificationTelegramChanel_api_key");
+
+                            var testurl = '{{testUrl}}&notificationTelegramChanel_api_key='+notificationTelegramChanel_api_key+'&notificationTelegramChanel_app_id='+notificationTelegramChanel_app_id;
+
+                            $.get(testurl, function(e){
+                                $(obj).prevAll('.input-group-addon').button('reset');
+
+                                if(e.ok == true){
+
+                                    obj.attr('style', "border-radius: 5px; border:#8fbb6c 1px solid;");
+
+                                    $("#status").append('<div class="alert alert-success">{{ text_sent_success }} : '+ notificationTelegram_chat_ids +'</div>');
+                                }else{
+                                    obj.attr('style', "border-radius: 5px; border:#FF0000 1px solid;");
+                                    obj.append('<div class="alert alert-danger">Message couldnt be sent, please check your details ---'+ notificationTelegram_chat_ids +'</div>');
+                                }
+                            },"json");
+
+
+
+
+
+                    });
+                });
+
+
+            </script>
+
+
+{{ footer }}
