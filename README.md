@@ -1,4 +1,4 @@
-# notification Telegram Chanel
+# Notification Telegram Chanel
 
 تساعد هذه الاضافة لمتجر اوبن كارد
 
