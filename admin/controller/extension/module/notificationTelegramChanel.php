@@ -187,7 +187,7 @@ class ControllerExtensionModulenotificationTelegramChanel extends Controller {
         $ImageUrl = $_GET["imgUrl"];
         $id = $_GET["id"];
 
-
+ 
 
 
         $token = $setting['notificationTelegramChanel_app_id'];
