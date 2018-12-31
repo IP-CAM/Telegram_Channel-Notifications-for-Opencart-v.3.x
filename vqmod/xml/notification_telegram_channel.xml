@@ -15,7 +15,7 @@
             <add><![CDATA[
 
          <div class="btn-group">
-          <button type="button" onclick="sendAllnotificationTelegramChanel();" class="btn btn-warning">ارسال تنبيه Telegram Chanel</button>
+          <button type="button" onclick="sendAllnotification_telegram_channel();" class="btn btn-warning">ارسال تنبيه Telegram Chanel</button>
         </div>
 
 			]]></add>
@@ -32,7 +32,7 @@
 
             <script type="text/javascript">
 
-    function sendAllnotificationTelegramChanel() {
+    function sendAllnotification_telegram_channel() {
 
     var dialog = bootbox.dialog({
         title: 'ارسال اشعار ',
@@ -51,7 +51,7 @@
                 callback: function(){
 
 
-                    $.getJSON( "index.php?route=extension/module/notificationTelegramChanel/send&user_token={{user_token}}", { name: $("#text").val(), imgUrl: $("#imgUrl").val(), id: $("#ID").val() } )
+                    $.getJSON( "index.php?route=extension/module/notification_telegram_channel/send&user_token={{user_token}}", { name: $("#text").val(), imgUrl: $("#imgUrl").val(), id: $("#ID").val() } )
                       .done(function( data ) {
 
                       if (data.errors){
@@ -78,7 +78,7 @@
     var obj = $("input[name='selected[]']:checked:enabled");
 
     $.ajax({
-        url: 'index.php?route=extension/module/notificationTelegramChanel/getProduct&user_token={{user_token}}',
+        url: 'index.php?route=extension/module/notification_telegram_channel/getProduct&user_token={{user_token}}',
         dataType: 'json',
         data: {id: obj.val()},
         success: function (data) {
