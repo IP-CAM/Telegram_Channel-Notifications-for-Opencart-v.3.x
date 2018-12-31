@@ -193,7 +193,7 @@ class ControllerExtensionModulenotificationTelegramChanel extends Controller {
         $token = $setting['notificationTelegramChanel_app_id'];
 
       
-	    $urlProduct = $this->url->link( 'catalog/product/', 'user_token=' . $this->session->data['user_token'] . '&product_id=' . $id, true );
+	    $urlProduct= $this->url->link('product/product', 'product_id=' . $id);
 
         
         
